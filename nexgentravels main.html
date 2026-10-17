@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexgen Travels - B2B & B2C Global Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0a192f',
+                            900: '#050a18',
+                        },
+                        gold: {
+                            500: '#d4af37',
+                            600: '#aa8c2c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @media print {
+            body * { visibility: hidden; }
+            #printableReceipt, #printableReceipt * { visibility: visible; }
+            #printableReceipt { position: absolute; left: 0; top: 0; width: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-gold-500 selection:text-navy-900">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-navy-900 via-gold-600 to-navy-900 text-white text-xs py-2 px-4 text-center font-medium tracking-wider shadow-inner">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-y-1 gap-x-6">
+            <span><i class="fa-solid fa-crown text-gold-500 mr-1"></i> Owner & CEO: Tashinul Islam</span>
+            <span><i class="fa-solid fa-user-tie text-gold-500 mr-1"></i> Executive in Charge: Syed Towfiqul Islam</span>
+            <span><i class="fa-solid fa-location-dot text-gold-500 mr-1"></i> Office: House 20/22, Road 5, Block B, Banasree, Rampura, Dhaka</span>
+            <span><i class="fa-solid fa-phone text-gold-500 mr-1"></i> Helpline: 01793023906</span>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-navy-900/95 backdrop-blur-md border-b border-gold-500/30 px-4 sm:px-8 lg:px-12 py-3 flex items-center justify-between shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl overflow-hidden bg-white p-0.5 border border-gold-500/50 shadow flex items-center justify-center">
+                <img src="image.png" alt="Nexgen Travels Logo" class="w-full h-full object-contain">
+            </div>
+            <div>
+                <h1 class="text-base sm:text-lg font-bold text-white tracking-wide leading-tight">NEXGEN TRAVELS</h1>
+                <p class="text-[9px] sm:text-[10px] text-gold-500 font-semibold tracking-widest uppercase">Global Visa & Travel Services</p>
+            </div>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+            <a href="#packages" class="hover:text-gold-500 transition">Services & Visas</a>
+            <a href="#converter" class="hover:text-gold-500 transition">Currency</a>
+            <a href="#flight-tracker" class="hover:text-gold-500 transition">Flights</a>
+            <a href="#visa-tracker" class="hover:text-gold-500 transition">Status Tracker</a>
+            <a href="#support-hub" class="hover:text-gold-500 transition">Support Hub</a>
+            <a href="#b2b-portal" onclick="requestB2BAccess(event)" class="hover:text-gold-500 transition flex items-center gap-1"><i class="fa-solid fa-lock text-xs text-gold-500"></i> B2B</a>
+            <a href="#admin-section" onclick="scrollToAdmin()" class="text-gold-500 font-bold hover:underline">Admin CMS</a>
+        </div>
+
+        <!-- Mode Switcher, Facebook & WhatsApp -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+            <div class="bg-slate-800 p-1 rounded-full border border-slate-700 flex items-center shadow-inner">
+                <button id="modeB2C" onclick="switchMode('b2c')" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-gold-500 text-navy-900 transition shadow">
+                    B2C
+                </button>
+                <button id="modeB2B" onclick="requestB2BAccess()" class="px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white transition flex items-center gap-1">
+                    <i class="fa-solid fa-lock text-[10px]"></i> B2B
+                </button>
+            </div>
+            
+            <a href="https://www.facebook.com/share/1J8fabQfKh/?mibextid=wwXIfr" target="_blank" class="inline-flex items-center bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded-xl text-xs font-semibold shadow transition" title="Visit Facebook Page">
+                <i class="fa-brands fa-facebook text-base"></i>
+            </a>
+
+            <a href="https://wa.me/8801901441142?text=Hello%20Nexgen%20Travels,%20I%20want%20to%20inquire%20about%20visa%20services." target="_blank" class="inline-flex items-center bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl text-xs font-semibold shadow transition">
+                <i class="fa-brands fa-whatsapp sm:mr-1.5 text-base"></i> <span class="hidden sm:inline">WhatsApp</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-gradient-to-br from-navy-900 via-slate-900 to-navy-800 py-12 sm:py-16 px-4 sm:px-8 lg:px-12 border-b border-slate-800 flex flex-col lg:flex-row items-center justify-between gap-10">
+        <div class="max-w-2xl text-center lg:text-left">
+            <span class="inline-block bg-gold-500/10 text-gold-500 border border-gold-500/30 px-3 py-1 rounded-full text-xs font-semibold mb-4">
+                <i class="fa-solid fa-earth-americas mr-1"></i> Global Visa Processing & Tour Specialist
+            </span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4">
+                Seamless Visa Processing with <span class="text-gold-500">Nexgen Travels</span>
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base mb-6 leading-relaxed">
+                Fast and reliable visa processing services for Malaysia, India, and China. Expert support for tourist, business, student, medical, and double entry visas.
+            </p>
+            <div class="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4">
+                <a href="#packages" class="bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-6 py-3 rounded-xl text-xs sm:text-sm shadow-lg transition flex items-center">
+                    <i class="fa-solid fa-passport mr-2"></i> Browse Visa Services
+                </a>
+                <a href="#support-hub" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold px-6 py-3 rounded-xl text-xs sm:text-sm transition flex items-center">
+                    <i class="fa-solid fa-headset text-gold-500 mr-2"></i> Support Hub
+                </a>
+            </div>
+        </div>
+
+        <!-- Executive Card with Official Logo -->
+        <div class="bg-slate-800/90 border border-gold-500/30 p-6 rounded-2xl shadow-xl backdrop-blur w-full max-w-sm text-center space-y-4">
+            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-gold-500 shadow-lg bg-white p-1 flex items-center justify-center">
+                <img src="image.png" alt="Nexgen Logo" class="w-full h-full object-contain">
+            </div>
+            <div>
+                <h3 class="text-base sm:text-lg font-bold text-white">Tashinul Islam</h3>
+                <p class="text-xs text-gold-500 font-semibold uppercase tracking-wider">Owner & CEO</p>
+            </div>
+            <div class="border-t border-slate-700/80 pt-3">
+                <h4 class="text-xs sm:text-sm font-semibold text-white">Syed Towfiqul Islam</h4>
+                <p class="text-[11px] text-slate-400 uppercase tracking-wider">Executive in Charge</p>
+            </div>
+            <div class="text-xs text-slate-300 pt-3 border-t border-slate-700/80 space-y-1">
+                <p><i class="fa-solid fa-location-dot text-gold-500 mr-1"></i> House 20/22, Road 5, Block B, Banasree, Dhaka</p>
+                <p><i class="fa-solid fa-phone text-gold-500 mr-1"></i> 01793023906, 01621069325</p>
+                <p><i class="fa-brands fa-whatsapp text-emerald-500 mr-1"></i> WhatsApp: 01901441142</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-8 lg:px-12 py-10 sm:py-14 space-y-16">
+
+        <!-- Destination Filter & Visa Service Section -->
+        <section id="packages">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
+                <div>
+                    <span class="text-gold-500 text-xs font-bold uppercase tracking-wider">Available Services</span>
+                    <h3 class="text-2xl font-bold text-white mt-1">Visa Processing Categories</h3>
+                </div>
+                <!-- Filter Tabs -->
+                <div class="flex overflow-x-auto pb-2 md:pb-0 gap-2 no-scrollbar">
+                    <button onclick="filterPackages('all')" class="cat-btn bg-gold-500 text-navy-900 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition shadow">All</button>
+                    <button onclick="filterPackages('malaysia')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition">Malaysia</button>
+                    <button onclick="filterPackages('india')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition">India</button>
+                    <button onclick="filterPackages('china')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition">China</button>
+                </div>
+            </div>
+
+            <!-- Notice Note -->
+            <div class="bg-amber-950/30 border border-amber-500/30 p-3 rounded-2xl mb-8 flex items-center gap-3 text-xs text-amber-200">
+                <i class="fa-solid fa-circle-info text-gold-500 text-lg flex-shrink-0"></i>
+                <p><strong>Note:</strong> Select your required visa category and click "Book Service" to submit your passport and tracking details instantly.</p>
+            </div>
+
+            <!-- Dynamic Visa Cards Grid -->
+            <div id="packageGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated dynamically via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Live Currency Converter Section -->
+        <section id="converter" class="bg-slate-800/90 border border-slate-700 p-6 sm:p-10 rounded-3xl shadow-xl">
+            <div class="max-w-xl mx-auto text-center space-y-4">
+                <span class="bg-gold-500/10 text-gold-500 border border-gold-500/30 px-3 py-1 rounded-full text-xs font-semibold">
+                    <i class="fa-solid fa-calculator mr-1"></i> Foreign Exchange Calculator
+                </span>
+                <h3 class="text-2xl font-bold text-white">Live Currency Converter (BDT to Foreign Currencies)</h3>
+                <p class="text-xs text-slate-300">Calculate estimated exchange rates for Malaysian Ringgit (MYR), Indian Rupee (INR), Chinese Yuan (CNY), and US Dollar (USD).</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 text-left">
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-300 mb-1">Amount in BDT (৳)</label>
+                        <input type="number" id="bdtInput" value="10000" oninput="convertCurrency()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-300 mb-1">Target Currency</label>
+                        <select id="currencySelect" onchange="convertCurrency()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-gold-500">
+                            <option value="0.038">MYR - Malaysian Ringgit (Approx 26.3 BDT)</option>
+                            <option value="0.72">INR - Indian Rupee (Approx 1.39 BDT)</option>
+                            <option value="0.060">CNY - Chinese Yuan (Approx 16.6 BDT)</option>
+                            <option value="0.0083">USD - US Dollar (Approx 120 BDT)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-gold-500/40 p-4 rounded-2xl text-center space-y-1 mt-4">
+                    <p class="text-[10px] text-slate-400">Converted Amount (Estimated)</p>
+                    <h4 id="convertedResult" class="text-xl font-extrabold text-gold-500">380.00 MYR</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Flight Status Checker Section -->
+        <section id="flight-tracker" class="bg-slate-800/90 border border-slate-700 p-6 sm:p-10 rounded-3xl shadow-xl">
+            <div class="max-w-xl mx-auto text-center space-y-4">
+                <span class="bg-gold-500/10 text-gold-500 border border-gold-500/30 px-3 py-1 rounded-full text-xs font-semibold">
+                    <i class="fa-solid fa-plane-departure mr-1"></i> Live Aviation Radar
+                </span>
+                <h3 class="text-2xl font-bold text-white">Live Flight Status & Schedule Board</h3>
+                <p class="text-xs text-slate-300">Enter Flight Number (e.g., <code class="text-gold-500">BG-034</code>, <code class="text-gold-500">MH-197</code>, <code class="text-gold-500">CZ-375</code>):</p>
+                
+                <div class="flex flex-col sm:flex-row gap-2 mt-4">
+                    <input type="text" id="flightInput" placeholder="Enter Flight No (e.g., BG-034)" class="flex-grow bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-gold-500 uppercase text-center sm:text-left">
+                    <button onclick="trackFlight()" class="bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-6 py-3 rounded-xl text-xs shadow transition">
+                        Check Status
+                    </button>
+                </div>
+
+                <!-- Flight Result Box -->
+                <div id="flightResult" class="hidden mt-6 bg-slate-900 border border-gold-500/40 p-5 rounded-2xl text-left space-y-3 text-xs">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                        <span id="flNum" class="text-gold-500 font-bold text-sm"></span>
+                        <span id="flBadge" class="px-2.5 py-1 rounded-full font-semibold"></span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-slate-300">
+                        <p><strong>Airline:</strong> <span id="flAirline"></span></p>
+                        <p><strong>Route:</strong> <span id="flRoute"></span></p>
+                        <p><strong>Departure:</strong> <span id="flDep"></span></p>
+                        <p><strong>Arrival:</strong> <span id="flArr"></span></p>
+                    </div>
+                </div>
+
+                <!-- Flight Error Box -->
+                <div id="flightError" class="hidden mt-6 bg-rose-950/40 border border-rose-500/40 p-4 rounded-2xl text-center text-xs text-rose-300">
+                    <i class="fa-solid fa-circle-exclamation text-rose-500 text-base mb-1 block"></i>
+                    <strong>Flight Not Found!</strong> Please check your flight code or contact helpline.
+                </div>
+            </div>
+        </section>
+
+        <!-- Real Visa & Application Status Tracker Section -->
+        <section id="visa-tracker" class="bg-slate-800/90 border border-slate-700 p-6 sm:p-10 rounded-3xl shadow-xl">
+            <div class="max-w-xl mx-auto text-center space-y-4">
+                <span class="bg-gold-500/10 text-gold-500 border border-gold-500/30 px-3 py-1 rounded-full text-xs font-semibold">
+                    <i class="fa-solid fa-file-invoice mr-1"></i> Live Invoice & Application Status Checker
+                </span>
+                <h3 class="text-2xl font-bold text-white">Track Your Booking / Invoice / Passport</h3>
+                <p class="text-xs text-slate-300">Enter your Invoice/Ref ID (e.g. <code class="text-gold-500">NXG-1234</code>) or Passport No:</p>
+                
+                <div class="flex flex-col sm:flex-row gap-2 mt-4">
+                    <input type="text" id="passportInput" placeholder="Enter Invoice ID or Passport No" class="flex-grow bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-gold-500 uppercase text-center sm:text-left">
+                    <button onclick="trackVisa()" class="bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-6 py-3 rounded-xl text-xs shadow transition">
+                        Track Status
+                    </button>
+                </div>
+
+                <!-- Tracker Result Box -->
+                <div id="trackerResult" class="hidden mt-6 bg-slate-900 border border-slate-700 p-5 rounded-2xl text-left space-y-4">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-slate-800 pb-3 gap-2">
+                        <div>
+                            <p class="text-[10px] text-slate-400">Invoice / Ref: <span id="resRef" class="text-gold-500 font-bold"></span> | Destination: <span id="resCountry" class="text-gold-400"></span></p>
+                            <h4 id="resName" class="text-sm font-bold text-white"></h4>
+                        </div>
+                        <span id="resStatusBadge" class="text-xs px-3 py-1 rounded-full font-semibold border text-center"></span>
+                    </div>
+                    <!-- Timeline Steps -->
+                    <div id="resTimeline" class="space-y-3 text-xs"></div>
+                    
+                    <!-- Official Country Portal Direct Link -->
+                    <div id="countryPortalLinkContainer" class="pt-3 border-t border-slate-800 text-center">
+                        <p class="text-[11px] text-slate-400 mb-2">Want to verify directly on the official government portal?</p>
+                        <a id="officialPortalBtn" href="#" target="_blank" class="inline-flex items-center bg-blue-600/80 hover:bg-blue-600 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow transition">
+                            <i class="fa-solid fa-external-link-alt mr-1.5"></i> Open Official Country Visa Portal
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Error Message Box -->
+                <div id="trackerError" class="hidden mt-6 bg-rose-950/40 border border-rose-500/40 p-4 rounded-2xl text-center text-xs text-rose-300">
+                    <i class="fa-solid fa-circle-exclamation text-rose-500 text-base mb-1 block"></i>
+                    <strong>Invoice / Passport Not Found!</strong><br>
+                    Please verify your reference number or contact Banasree office hotline: <span class="text-white font-semibold">01793023906</span>.
+                </div>
+            </div>
+        </section>
+
+        <!-- Dedicated Helping & Support Hub Section -->
+        <section id="support-hub" class="bg-slate-800/90 border border-slate-700 p-6 sm:p-10 rounded-3xl shadow-xl space-y-6">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <span class="bg-gold-500/10 text-gold-500 border border-gold-500/30 px-3 py-1 rounded-full text-xs font-semibold">
+                    <i class="fa-solid fa-life-ring mr-1"></i> Passenger & Client Assistance Hub
+                </span>
+                <h3 class="text-2xl font-bold text-white">Dedicated Help & Advisory Desk</h3>
+                <p class="text-xs text-slate-300">Everything you need to know before you travel with Nexgen Travels from Banasree, Dhaka.</p>
+            </div>
+
+            <!-- Help Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-slate-900 border border-slate-700 p-5 rounded-2xl space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-500 flex items-center justify-center text-base"><i class="fa-solid fa-wheelchair"></i></div>
+                    <h4 class="text-sm font-bold text-white">Airport & Wheelchair Support</h4>
+                    <p class="text-xs text-slate-300">Special assistance for senior citizens, wheelchair requests, and airport meet-and-greet guidance.</p>
+                    <a href="https://wa.me/8801901441142?text=I%20want%20to%20inquire%20about%20airport%20wheelchair%20support." target="_blank" class="inline-flex items-center text-xs text-gold-500 font-semibold hover:underline">
+                        Request Assistance <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-slate-900 border border-slate-700 p-5 rounded-2xl space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-500 flex items-center justify-center text-base"><i class="fa-solid fa-passport"></i></div>
+                    <h4 class="text-sm font-bold text-white">Visa Document Advisory</h4>
+                    <p class="text-xs text-slate-300">Quick guidance on photo requirements, bank statements, NOC letters, and embassy form submissions.</p>
+                    <a href="https://wa.me/8801901441142?text=Please%20send%20me%20visa%20document%20guidelines." target="_blank" class="inline-flex items-center text-xs text-gold-500 font-semibold hover:underline">
+                        Get Visa Guide <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-slate-900 border border-slate-700 p-5 rounded-2xl space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-500 flex items-center justify-center text-base"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h4 class="text-sm font-bold text-white">Office Location (Banasree)</h4>
+                    <p class="text-xs text-slate-300">Visit our head office at House 20/22, Road 5, Block B, Banasree, Dhaka for physical document submission and consultation.</p>
+                    <a href="https://maps.google.com/?q=Banasree+Block+B+Road+5+Dhaka" target="_blank" class="inline-flex items-center text-xs text-gold-500 font-semibold hover:underline">
+                        Open Google Maps <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- FAQ Accordion -->
+            <div class="pt-4 border-t border-slate-700/80 space-y-3">
+                <h4 class="text-sm font-bold text-white mb-2"><i class="fa-solid fa-circle-question text-gold-500 mr-1"></i> Frequently Asked Questions</h4>
+                
+                <div class="bg-slate-900 border border-slate-700 p-4 rounded-xl space-y-1">
+                    <h5 class="text-xs font-bold text-white">What is the standard passport validity required for visa processing?</h5>
+                    <p class="text-[11px] text-slate-300">Your passport must have a minimum validity of 6 months from the intended date of travel, with at least 2 blank pages.</p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-700 p-4 rounded-xl space-y-1">
+                    <h5 class="text-xs font-bold text-white">How does B2B agency registration work?</h5>
+                    <p class="text-[11px] text-slate-300">Travel agents can submit their credentials through our B2B section or contact our executive desk for wholesale rate access.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Management & CMS Dashboard Section -->
+        <section id="admin-section" class="bg-slate-800/90 border border-gold-500/30 p-6 sm:p-10 rounded-3xl shadow-xl">
+            <div class="max-w-4xl mx-auto space-y-4">
+                <div class="text-center">
+                    <span class="bg-gold-500/10 text-gold-500 border border-gold-500/30 px-3 py-1 rounded-full text-xs font-semibold">
+                        <i class="fa-solid fa-lock mr-1"></i> Executive Control & CMS
+                    </span>
+                    <h3 class="text-2xl font-bold text-white mt-2">Admin Dashboard & Live Server Management</h3>
+                    <p class="text-xs text-slate-300">Authorized Personnel: Tashinul Islam & Syed Towfiqul Islam (Banasree Office)</p>
+                </div>
+
+                <!-- Login Box -->
+                <div id="adminLoginBox" class="bg-slate-900 border border-slate-700 p-6 rounded-2xl space-y-3 max-w-md mx-auto">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Admin Username</label>
+                        <input type="text" id="adminUser" placeholder="Enter Username" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Password</label>
+                        <input type="password" id="adminPass" placeholder="Enter Password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                    </div>
+                    <button onclick="loginAdmin()" class="w-full bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold py-3 rounded-xl text-xs shadow transition">
+                        Login to Admin CMS
+                    </button>
+                    <p id="loginError" class="text-rose-400 text-xs text-center hidden">Invalid Admin Credentials!</p>
+                </div>
+
+                <!-- Dashboard Box (Hidden by Default) -->
+                <div id="adminDashboard" class="hidden bg-slate-900 border border-gold-500/40 p-6 rounded-2xl space-y-6">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-3 flex-wrap gap-2">
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Nexgen Travels - Live CMS Panel</h4>
+                            <p class="text-[10px] text-gold-500">No-Coding Live Control Active</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openPasswordModal()" class="bg-slate-800 hover:bg-slate-700 text-gold-400 border border-gold-500/30 px-3 py-1.5 rounded-xl text-xs font-semibold transition">
+                                <i class="fa-solid fa-key mr-1"></i> Password
+                            </button>
+                            <button onclick="logoutAdmin()" class="bg-rose-600/80 hover:bg-rose-600 text-white px-3 py-1.5 rounded-xl text-xs font-semibold">
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tab Switcher inside Admin -->
+                    <div class="flex gap-2 border-b border-slate-800 pb-3">
+                        <button onclick="switchAdminTab('bookings')" id="tabBookingsBtn" class="bg-gold-500 text-navy-900 px-4 py-2 rounded-xl text-xs font-bold transition">Bookings & PDFs</button>
+                        <button onclick="switchAdminTab('cms')" id="tabCmsBtn" class="bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs font-medium transition">Add/Edit Services (CMS)</button>
+                    </div>
+
+                    <!-- Tab 1: Bookings Management -->
+                    <div id="adminTabBookings" class="space-y-4">
+                        <h5 class="text-xs font-bold text-slate-300"><i class="fa-solid fa-list-check text-gold-500 mr-1"></i> Received Booking Requests (<span id="bookingCount">0</span>)</h5>
+                        <div id="bookingsList" class="space-y-3 max-h-80 overflow-y-auto no-scrollbar text-xs">
+                            <p class="text-slate-500 text-center py-4">No client bookings received yet.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: CMS Service Manager (No-Code Add/Delete Services) -->
+                    <div id="adminTabCms" class="space-y-4 hidden">
+                        <h5 class="text-xs font-bold text-slate-300"><i class="fa-solid fa-plus-circle text-gold-500 mr-1"></i> Add New Visa Service Without Coding</h5>
+                        <form onsubmit="addNewPackage(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                            <div>
+                                <label class="block text-[10px] font-semibold text-slate-300 mb-1">Service Title</label>
+                                <input type="text" id="cmsTitle" required placeholder="e.g. Malaysia Tourist Visa" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold text-slate-300 mb-1">Country</label>
+                                <input type="text" id="cmsCountry" required placeholder="e.g. Malaysia" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold text-slate-300 mb-1">Category</label>
+                                <select id="cmsCat" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                                    <option value="malaysia">Malaysia</option>
+                                    <option value="india">India</option>
+                                    <option value="china">China</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-[10px] font-semibold text-slate-300 mb-1">Service Description & Requirements</label>
+                                <input type="text" id="cmsDesc" required placeholder="Includes visa processing, consultancy & document check." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold py-2.5 rounded-xl text-xs shadow transition">
+                                    Publish Service Live Instantly
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="space-y-2 pt-2">
+                            <h6 class="text-[11px] font-bold text-slate-400">Manage Active Services</h6>
+                            <div id="cmsPackageList" class="space-y-2 max-h-48 overflow-y-auto no-scrollbar text-xs"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- B2B Portal Agent Section -->
+        <section id="b2b-portal" class="bg-gradient-to-r from-navy-900 via-slate-900 to-navy-900 border border-gold-500/30 p-8 rounded-3xl shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div class="space-y-4 max-w-lg text-center lg:text-left">
+                <span class="bg-gold-500/10 text-gold-500 border border-gold-500/30 px-3 py-1 rounded-full text-xs font-semibold">
+                    <i class="fa-solid fa-handshake mr-1"></i> B2B Agent Wholesale Partner Program
+                </span>
+                <h3 class="text-2xl font-bold text-white">Are You a Travel Agent? Join Nexgen Partner Network</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Access wholesale visa processing rates, special group submissions, and instant status updates. Office located at Banasree Block B, Dhaka.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start items-center gap-4 text-xs font-semibold text-gold-500">
+                    <span><i class="fa-solid fa-check mr-1"></i> B2B Wholesale Support</span>
+                    <span><i class="fa-solid fa-check mr-1"></i> Support: Nexgentravels00@gmail.com</span>
+                </div>
+            </div>
+            <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl w-full max-w-sm space-y-4 relative">
+                <div id="b2bLockOverlay" class="absolute inset-0 bg-slate-900/95 backdrop-blur-sm rounded-2xl z-10 flex flex-col items-center justify-center p-6 text-center space-y-3">
+                    <i class="fa-solid fa-shield-halved text-gold-500 text-3xl mb-1"></i>
+                    <h4 class="text-sm font-bold text-white">Protected Agent Zone</h4>
+                    <p class="text-[11px] text-slate-300">Please enter B2B credentials to unlock agent inquiry panel.</p>
+                    <button onclick="requestB2BAccess()" class="bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-4 py-2 rounded-xl text-xs transition">
+                        Unlock B2B Portal
+                    </button>
+                </div>
+                <h4 class="text-sm font-bold text-white text-center">Agent Quick Inquiry</h4>
+                <input type="email" placeholder="Agent Email / Agency Name" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                <input type="tel" placeholder="Phone Number" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                <button onclick="alert('B2B Inquiry Received! Our team will contact your agency shortly.')" class="w-full bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold py-2.5 rounded-xl text-xs shadow transition">
+                    Submit Agent Inquiry
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- In-Portal Booking Modal & Printable Receipt -->
+    <div id="bookingModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-800 border border-slate-700 w-full max-w-md rounded-3xl p-6 shadow-2xl relative space-y-4">
+            <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div>
+                <span class="bg-gold-500/10 text-gold-500 border border-gold-500/30 px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider">Instant Service Booking</span>
+                <h3 id="modalPkgTitle" class="text-lg font-bold text-white mt-1">Service Name</h3>
+                <p class="text-xs text-slate-300">Destination: <span id="modalCountryText" class="text-gold-400 font-bold"></span> | Mode: <span id="modalModeText" class="text-gold-500 font-bold uppercase">B2C</span></p>
+            </div>
+
+            <!-- Booking Form -->
+            <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-3">
+                <input type="hidden" id="bkCountry">
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">Full Name</label>
+                    <input type="text" id="bkName" required placeholder="Enter your full name" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">Phone Number</label>
+                    <input type="tel" id="bkPhone" required placeholder="e.g., 01700000000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">Passport Number / Ref</label>
+                    <input type="text" id="bkPassport" required placeholder="Enter passport number" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500 uppercase">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">Preferred Processing Date</label>
+                    <input type="date" id="bkDate" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">Upload Passport / Document (PDF Only)</label>
+                    <input type="file" id="bkDoc" accept="application/pdf" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gold-500 file:text-navy-900 hover:file:bg-gold-600 cursor-pointer">
+                </div>
+                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold py-3 rounded-xl text-xs shadow-lg transition mt-2">
+                    Confirm Service Booking
+                </button>
+            </form>
+
+            <!-- Success & Printable Receipt Box -->
+            <div id="bookingSuccessBox" class="hidden space-y-4">
+                <div id="printableReceipt" class="bg-slate-900 border border-gold-500/40 p-4 rounded-2xl text-slate-200 space-y-3 text-xs">
+                    <div class="text-center border-b border-slate-800 pb-2 flex items-center justify-center space-x-2">
+                        <div class="w-6 h-6 bg-white rounded flex items-center justify-center p-0.5"><img src="image.png" class="object-contain"></div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white tracking-wide">NEXGEN TRAVELS - SERVICE RECEIPT</h4>
+                            <p class="text-[10px] text-gold-500">Global Visa Processing Center (Banasree, Dhaka)</p>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <p><strong>Invoice / Ref ID:</strong> <span id="recRef" class="text-gold-500 font-bold"></span></p>
+                        <p><strong>Service:</strong> <span id="recPackage"></span></p>
+                        <p><strong>Country:</strong> <span id="recCountry"></span></p>
+                        <p><strong>Client Name:</strong> <span id="recName"></span></p>
+                        <p><strong>Phone:</strong> <span id="recPhone"></span></p>
+                        <p><strong>Passport No:</strong> <span id="recPassport"></span></p>
+                        <p><strong>Processing Date:</strong> <span id="recDate"></span></p>
+                        <p><strong>Booking Mode:</strong> <span id="recMode"></span></p>
+                        <p><strong>Uploaded PDF:</strong> <span id="recDocName" class="text-gold-400"></span></p>
+                    </div>
+                    <div class="border-t border-slate-800 pt-2 text-[10px] text-slate-400 text-center">
+                        <p>CEO: Tashinul Islam | Executive in Charge: Syed Towfiqul Islam</p>
+                        <p>Helpline: 01793023906, 01621069325 | WhatsApp: 01901441142</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <button onclick="printReceipt()" class="flex-grow bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-xl text-xs font-bold shadow transition flex items-center justify-center">
+                        <i class="fa-solid fa-print mr-1.5"></i> Print / Save Receipt
+                    </button>
+                    <button onclick="closeBookingModal()" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2.5 rounded-xl text-xs font-semibold">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- B2B Login Modal -->
+    <div id="b2bAuthModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-800 border border-gold-500/30 w-full max-w-sm rounded-3xl p-6 shadow-2xl relative space-y-4">
+            <button onclick="closeB2BModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center">
+                <i class="fa-solid fa-user-lock text-gold-500 text-3xl mb-2"></i>
+                <h3 class="text-base font-bold text-white">B2B Agent Portal Login</h3>
+                <p class="text-[11px] text-slate-300">Authorized Agent Access Only</p>
+            </div>
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">Username</label>
+                    <input type="text" id="b2bUser" placeholder="Enter B2B Username" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">Password</label>
+                    <input type="password" id="b2bPass" placeholder="Enter B2B Password" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <button onclick="validateB2BLogin()" class="w-full bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold py-2.5 rounded-xl text-xs shadow transition">
+                    Unlock B2B Mode
+                </button>
+                <p id="b2bErrorMsg" class="text-xs text-center font-semibold text-rose-400 hidden">Invalid Username or Password!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="passwordModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-800 border border-slate-700 w-full max-w-sm rounded-3xl p-6 shadow-2xl relative space-y-4">
+            <button onclick="closePasswordModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-base font-bold text-white">Change Admin Password</h3>
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">Current Password</label>
+                    <input type="password" id="oldPass" placeholder="Enter current password" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">New Password</label>
+                    <input type="password" id="newPass" placeholder="Enter new password" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <button onclick="updateAdminPassword()" class="w-full bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold py-2.5 rounded-xl text-xs shadow transition">
+                    Update Password
+                </button>
+                <p id="passMsg" class="text-xs text-center font-semibold"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 border-t border-slate-800 py-10 px-4 sm:px-8 text-center text-xs text-slate-400 space-y-3">
+        <div class="flex items-center justify-center space-x-2">
+            <div class="w-6 h-6 bg-white rounded flex items-center justify-center p-0.5"><img src="image.png" class="object-contain"></div>
+            <span class="text-white font-bold tracking-wider">NEXGEN TRAVELS</span>
+        </div>
+        <p>Owner & CEO: <strong class="text-gold-500">Tashinul Islam</strong> | Executive in Charge: <strong class="text-gold-500">Syed Towfiqul Islam</strong></p>
+        <p><i class="fa-solid fa-location-dot text-gold-500 mr-1"></i> Office: House 20/22, Road 5, Block B, Banasree, Rampura, Dhaka</p>
+        <p><i class="fa-solid fa-phone text-gold-500 mr-1"></i> Hotline: 01793023906, 01621069325 | <i class="fa-brands fa-whatsapp text-emerald-500 ml-2 mr-1"></i> WhatsApp: 01901441142 | <i class="fa-solid fa-envelope text-gold-500 ml-2 mr-1"></i> Nexgentravels00@gmail.com</p>
+        
+        <div class="pt-2 flex justify-center space-x-4">
+            <a href="https://www.facebook.com/share/1J8fabQfKh/?mibextid=wwXIfr" target="_blank" class="text-slate-400 hover:text-blue-500 text-base"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://wa.me/8801901441142" target="_blank" class="text-slate-400 hover:text-emerald-500 text-base"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+        <p class="text-[11px] text-slate-500 pt-2">© 2026 Nexgen Travels. All rights reserved. Global Visa & Travel Services.</p>
+    </footer>
+
+    <!-- JavaScript Logic & Updated Visa List -->
+    <script>
+        let currentMode = 'b2c';
+        let isB2BUnlocked = false;
+        let selectedPackageName = '';
+        let selectedCountryName = '';
+        let allBookings = JSON.parse(localStorage.getItem('nexgen_bookings')) || [];
+        let adminPassword = '56595659';
+
+        let defaultPackages = [
+            { id: 1, title: 'Malaysia Tourist Visa', country: 'Malaysia', category: 'malaysia', desc: 'Standard tourist visa processing with fast verification and documentation support.' },
+            { id: 2, title: 'Malaysia Student Visa', country: 'Malaysia', category: 'malaysia', desc: 'Complete visa consultancy and processing guidance for higher studies in Malaysia.' },
+            { id: 3, title: 'Malaysia Business Visa', country: 'Malaysia', category: 'malaysia', desc: 'Express business visa processing for corporate travel and meetings.' },
+            { id: 4, title: 'Indian Tourist Visa', country: 'India', category: 'india', desc: 'Fast-track tourist visa application support for visiting India.' },
+            { id: 5, title: 'Indian Medical Visa', country: 'India', category: 'india', desc: 'Priority medical visa assistance for patients and medical attendants.' },
+            { id: 6, title: 'Indian Business Visa', country: 'India', category: 'india', desc: 'Reliable business visa processing for trade and commercial visits to India.' },
+            { id: 7, title: 'Indian Double Entry Visa', country: 'India', category: 'india', desc: 'Special double entry visa assistance for flexible travel itineraries.' },
+            { id: 8, title: 'China Tourist Visa', country: 'China', category: 'china', desc: 'Comprehensive documentation and embassy submission for Chinese tourist visa.' },
+            { id: 9, title: 'China Business Visa', country: 'China', category: 'china', desc: 'Business invitation verification and professional visa processing for China.' }
+        ];
+
+        let cmsPackages = JSON.parse(localStorage.getItem('nexgen_cms_packages')) || defaultPackages;
+
+        function requestB2BAccess(event) {
+            if (event) event.preventDefault();
+            if (isB2BUnlocked) {
+                switchMode('b2b');
+                document.getElementById('b2b-portal').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                document.getElementById('b2bUser').value = '';
+                document.getElementById('b2bPass').value = '';
+                document.getElementById('b2bErrorMsg').classList.add('hidden');
+                document.getElementById('b2bAuthModal').classList.remove('hidden');
+            }
+        }
+
+        function closeB2BModal() {
+            document.getElementById('b2bAuthModal').classList.add('hidden');
+        }
+
+        function validateB2BLogin() {
+            const u = document.getElementById('b2bUser').value.trim();
+            const p = document.getElementById('b2bPass').value.trim();
+
+            if (u === 'nexgen travels' && p === 'nexgen0000') {
+                isB2BUnlocked = true;
+                closeB2BModal();
+                switchMode('b2b');
+                document.getElementById('b2bLockOverlay').classList.add('hidden');
+                alert('B2B Wholesale Agent Access Unlocked Successfully!');
+            } else {
+                document.getElementById('b2bErrorMsg').classList.remove('hidden');
+            }
+        }
+
+        function renderPackages(filterCat = 'all') {
+            const grid = document.getElementById('packageGrid');
+            let html = '';
+
+            const filtered = filterCat === 'all' ? cmsPackages : cmsPackages.filter(p => p.category === filterCat);
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<p class="text-slate-400 text-center col-span-full py-6">No visa services found in this category.</p>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                let badgeBg = 'bg-blue-500 text-white';
+                if(p.category === 'india') badgeBg = 'bg-amber-600 text-white';
+                if(p.category === 'china') badgeBg = 'bg-rose-600 text-white';
+
+                html += `
+                <div class="pkg-card bg-slate-800/90 rounded-2xl border border-slate-700 overflow-hidden shadow-lg flex flex-col justify-between" data-category="${p.category}">
+                    <div>
+                        <div class="relative h-44 bg-slate-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 right-3 ${badgeBg} font-bold text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider">${p.country}</span>
+                            <div class="absolute bottom-3 left-3 text-white font-bold text-base"><i class="fa-solid fa-passport text-gold-500 mr-2"></i> ${p.title}</div>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <p class="text-xs text-slate-300">${p.desc}</p>
+                            <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-700 pt-3">
+                                <span><i class="fa-solid fa-shield-halved text-gold-500 mr-1"></i> Verified Processing</span>
+                                <span><i class="fa-solid fa-check text-gold-500 mr-1"></i> Instant Booking</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex items-center justify-between border-t border-slate-700/60 mt-4">
+                        <span class="text-xs text-gold-400 font-semibold"><i class="fa-solid fa-file-circle-check mr-1"></i> Direct Application</span>
+                        <button onclick="openBookingModal('${p.title}', '${p.country}')" class="bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-4 py-2 rounded-xl text-xs shadow transition">
+                            Book Service
+                        </button>
+                    </div>
+                </div>`;
+            });
+            grid.innerHTML = html;
+        }
+
+        renderPackages('all');
+
+        function switchMode(mode) {
+            currentMode = mode;
+            const b2cBtn = document.getElementById('modeB2C');
+            const b2bBtn = document.getElementById('modeB2B');
+            if (mode === 'b2c') {
+                b2cBtn.className = "px-3 py-1.5 rounded-full text-xs font-semibold bg-gold-500 text-navy-900 transition shadow";
+                b2bBtn.className = "px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white transition flex items-center gap-1";
+            } else {
+                b2bBtn.className = "px-3 py-1.5 rounded-full text-xs font-semibold bg-gold-500 text-navy-900 transition shadow flex items-center gap-1";
+                b2cBtn.className = "px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white transition";
+            }
+        }
+
+        function filterPackages(category) {
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                btn.className = "cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition";
+                if(btn.textContent.toLowerCase().includes(category) || (category === 'all' && btn.textContent === 'All')) {
+                    btn.className = "cat-btn bg-gold-500 text-navy-900 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap shadow transition";
+                }
+            });
+            renderPackages(category);
+        }
+
+        function convertCurrency() {
+            const bdt = parseFloat(document.getElementById('bdtInput').value) || 0;
+            const rate = parseFloat(document.getElementById('currencySelect').value) || 0;
+            const selectEl = document.getElementById('currencySelect');
+            const currencyCode = selectEl.options[selectEl.selectedIndex].text.split(' - ')[0];
+            const converted = (bdt * rate).toFixed(2);
+            document.getElementById('convertedResult').textContent = `${converted} ${currencyCode}`;
+        }
+        convertCurrency();
+
+        function openBookingModal(pkgName, countryName) {
+            selectedPackageName = pkgName;
+            selectedCountryName = countryName;
+            document.getElementById('modalPkgTitle').textContent = pkgName;
+            document.getElementById('modalCountryText').textContent = countryName;
+            document.getElementById('modalModeText').textContent = currentMode.toUpperCase() + ' MODE';
+            document.getElementById('bkCountry').value = countryName;
+            document.getElementById('bookingForm').reset();
+            document.getElementById('bookingForm').classList.remove('hidden');
+            document.getElementById('bookingSuccessBox').classList.add('hidden');
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function submitBooking(event) {
+            event.preventDefault();
+            const name = document.getElementById('bkName').value;
+            const phone = document.getElementById('bkPhone').value;
+            const passport = document.getElementById('bkPassport').value.toUpperCase();
+            const date = document.getElementById('bkDate').value;
+            const country = document.getElementById('bkCountry').value;
+            
+            const docInput = document.getElementById('bkDoc');
+            let docName = "No Document Attached";
+            let docUrl = "#";
+
+            if(docInput.files && docInput.files[0]) {
+                docName = docInput.files[0].name;
+                docUrl = URL.createObjectURL(docInput.files[0]);
+            }
+            
+            const randomRef = 'NXG-' + Math.floor(1000 + Math.random() * 9000);
+            
+            const newBooking = {
+                id: Date.now(),
+                ref: randomRef,
+                package: selectedPackageName,
+                country: country,
+                name: name,
+                phone: phone,
+                passport: passport,
+                date: date,
+                mode: currentMode.toUpperCase(),
+                status: 'Pending',
+                time: new Date().toLocaleTimeString(),
+                docName: docName,
+                docUrl: docUrl
+            };
+            allBookings.push(newBooking);
+            localStorage.setItem('nexgen_bookings', JSON.stringify(allBookings));
+            updateAdminDashboardList();
+
+            syncDynamicVisaDatabase(newBooking);
+
+            document.getElementById('recRef').textContent = randomRef;
+            document.getElementById('recPackage').textContent = selectedPackageName;
+            document.getElementById('recCountry').textContent = country;
+            document.getElementById('recName').textContent = name;
+            document.getElementById('recPhone').textContent = phone;
+            document.getElementById('recPassport').textContent = passport;
+            document.getElementById('recDate').textContent = date;
+            document.getElementById('recMode').textContent = currentMode.toUpperCase();
+            document.getElementById('recDocName').textContent = docName;
+
+            document.getElementById('bookingForm').classList.add('hidden');
+            document.getElementById('bookingSuccessBox').classList.remove('hidden');
+        }
+
+        function printReceipt() {
+            window.print();
+        }
+
+        function scrollToAdmin() {
+            document.getElementById('admin-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function loginAdmin() {
+            const user = document.getElementById('adminUser').value.trim();
+            const pass = document.getElementById('adminPass').value.trim();
+            const errorEl = document.getElementById('loginError');
+
+            if(user === 'nexgen5669' && pass === adminPassword) {
+                errorEl.classList.add('hidden');
+                document.getElementById('adminLoginBox').classList.add('hidden');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                updateAdminDashboardList();
+                renderCmsPackageList();
+            } else {
+                errorEl.classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('adminLoginBox').classList.remove('hidden');
+            document.getElementById('adminUser').value = '';
+            document.getElementById('adminPass').value = '';
+        }
+
+        function switchAdminTab(tab) {
+            const bookingsTab = document.getElementById('adminTabBookings');
+            const cmsTab = document.getElementById('adminTabCms');
+            const bBtn = document.getElementById('tabBookingsBtn');
+            const cBtn = document.getElementById('tabCmsBtn');
+
+            if(tab === 'bookings') {
+                bookingsTab.classList.remove('hidden');
+                cmsTab.classList.add('hidden');
+                bBtn.className = "bg-gold-500 text-navy-900 px-4 py-2 rounded-xl text-xs font-bold transition";
+                cBtn.className = "bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs font-medium transition";
+            } else {
+                cmsTab.classList.remove('hidden');
+                bookingsTab.classList.add('hidden');
+                cBtn.className = "bg-gold-500 text-navy-900 px-4 py-2 rounded-xl text-xs font-bold transition";
+                bBtn.className = "bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs font-medium transition";
+                renderCmsPackageList();
+            }
+        }
+
+        function addNewPackage(event) {
+            event.preventDefault();
+            const newPkg = {
+                id: Date.now(),
+                title: document.getElementById('cmsTitle').value,
+                country: document.getElementById('cmsCountry').value,
+                category: document.getElementById('cmsCat').value,
+                desc: document.getElementById('cmsDesc').value
+            };
+
+            cmsPackages.push(newPkg);
+            localStorage.setItem('nexgen_cms_packages', JSON.stringify(cmsPackages));
+            renderPackages('all');
+            renderCmsPackageList();
+            alert('New Visa Service Published Successfully Live!');
+            event.target.reset();
+        }
+
+        function deleteCmsPackage(id) {
+            if(confirm('Are you sure you want to delete this service from live server?')) {
+                cmsPackages = cmsPackages.filter(p => p.id !== id);
+                localStorage.setItem('nexgen_cms_packages', JSON.stringify(cmsPackages));
+                renderPackages('all');
+                renderCmsPackageList();
+            }
+        }
+
+        function renderCmsPackageList() {
+            const listEl = document.getElementById('cmsPackageList');
+            let html = '';
+            cmsPackages.forEach(p => {
+                html += `
+                <div class="bg-slate-900 border border-slate-700 p-2.5 rounded-xl flex justify-between items-center text-xs">
+                    <div>
+                        <strong class="text-white">${p.title}</strong> <span class="text-gold-400">(${p.country})</span>
+                    </div>
+                    <button onclick="deleteCmsPackage(${p.id})" class="text-rose-400 hover:text-rose-300 px-2 py-1"><i class="fa-solid fa-trash"></i></button>
+                </div>`;
+            });
+            listEl.innerHTML = html;
+        }
+
+        function openPasswordModal() {
+            document.getElementById('oldPass').value = '';
+            document.getElementById('newPass').value = '';
+            document.getElementById('passMsg').textContent = '';
+            document.getElementById('passwordModal').classList.remove('hidden');
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').classList.add('hidden');
+        }
+
+        function updateAdminPassword() {
+            const oldP = document.getElementById('oldPass').value.trim();
+            const newP = document.getElementById('newPass').value.trim();
+            const msgEl = document.getElementById('passMsg');
+
+            if(oldP === adminPassword) {
+                if(newP.length >= 6) {
+                    adminPassword = newP;
+                    msgEl.className = "text-xs text-center font-semibold text-emerald-400";
+                    msgEl.textContent = "Password updated successfully!";
+                    setTimeout(() => { closePasswordModal(); }, 1500);
+                } else {
+                    msgEl.className = "text-xs text-center font-semibold text-rose-400";
+                    msgEl.textContent = "New password must be at least 6 characters!";
+                }
+            } else {
+                msgEl.className = "text-xs text-center font-semibold text-rose-400";
+                msgEl.textContent = "Current password is incorrect!";
+            }
+        }
+
+        function setBookingStatus(id, newStatus) {
+            const booking = allBookings.find(b => b.id === id);
+            if(booking) {
+                booking.status = newStatus;
+                localStorage.setItem('nexgen_bookings', JSON.stringify(allBookings));
+                updateAdminDashboardList();
+                syncDynamicVisaDatabase(booking);
+            }
+        }
+
+        function deleteBooking(id) {
+            if(confirm('Are you sure you want to delete this booking?')) {
+                allBookings = allBookings.filter(b => b.id !== id);
+                localStorage.setItem('nexgen_bookings', JSON.stringify(allBookings));
+                updateAdminDashboardList();
+            }
+        }
+
+        function updateAdminDashboardList() {
+            const listEl = document.getElementById('bookingsList');
+            document.getElementById('bookingCount').textContent = allBookings.length;
+
+            if(allBookings.length === 0) {
+                listEl.innerHTML = `<p class="text-slate-500 text-center py-4">No client bookings received yet.</p>`;
+                return;
+            }
+
+            let html = '';
+            allBookings.forEach((b, idx) => {
+                let statusBadge = `<span class="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded text-[10px]">Pending</span>`;
+                if(b.status === 'Accepted' || b.status === 'Approved') {
+                    statusBadge = `<span class="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-[10px]"><i class="fa-solid fa-check mr-1"></i> Approved</span>`;
+                } else if(b.status === 'Rejected') {
+                    statusBadge = `<span class="bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded text-[10px]"><i class="fa-solid fa-xmark mr-1"></i> Rejected</span>`;
+                }
+
+                let docDownloadBtn = `<span class="text-slate-500 text-[11px]">No PDF attached</span>`;
+                if(b.docUrl !== '#') {
+                    docDownloadBtn = `<a href="${b.docUrl}" download="${b.docName}" class="bg-blue-600/80 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-[11px] font-semibold inline-flex items-center transition"><i class="fa-solid fa-download mr-1"></i> Download PDF (${b.docName})</a>`;
+                }
+
+                html += `
+                <div class="bg-slate-800 border border-slate-700 p-3 rounded-xl space-y-2">
+                    <div class="flex justify-between items-center font-bold text-white">
+                        <span>#${idx+1} [Invoice: ${b.ref}] - ${b.package} (${b.country})</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-gold-500/20 text-gold-400 px-2 py-0.5 rounded text-[10px]">${b.mode}</span>
+                            ${statusBadge}
+                        </div>
+                    </div>
+                    <p class="text-slate-300"><strong>Client:</strong> ${b.name} | <strong>Phone:</strong> ${b.phone}</p>
+                    <p class="text-slate-400 text-[11px]">Passport: ${b.passport} | Date: ${b.date} (${b.time})</p>
+                    <div class="pt-1">${docDownloadBtn}</div>
+                    
+                    <div class="flex justify-between items-center pt-1 border-t border-slate-700/80">
+                        <div class="flex space-x-2">
+                            <button onclick="setBookingStatus(${b.id}, 'Approved')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded-lg text-[11px] font-semibold transition">
+                                <i class="fa-solid fa-check mr-1"></i> Approve
+                            </button>
+                            <button onclick="setBookingStatus(${b.id}, 'Rejected')" class="bg-rose-600 hover:bg-rose-500 text-white px-3 py-1 rounded-lg text-[11px] font-semibold transition">
+                                <i class="fa-solid fa-xmark mr-1"></i> Reject
+                            </button>
+                        </div>
+                        <button onclick="deleteBooking(${b.id})" class="text-rose-400 hover:text-rose-300 text-xs font-semibold px-2 py-1">
+                            <i class="fa-solid fa-trash mr-1"></i> Delete
+                        </button>
+                    </div>
+                </div>`;
+            });
+            listEl.innerHTML = html;
+        }
+
+        const flightDatabase = {
+            "BG-034": { airline: "Biman Bangladesh Airlines", route: "DAC to JED", dep: "04:30 PM", arr: "08:15 PM", status: "On Time", badge: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" },
+            "SV-804": { airline: "Saudia", route: "DAC to RUH", dep: "08:00 PM", arr: "11:30 PM", status: "Delayed (30m)", badge: "bg-amber-500/20 text-amber-400 border border-amber-500/30" },
+            "CZ-375": { airline: "China Southern", route: "DAC to CAN", dep: "11:15 AM", arr: "05:00 PM", status: "On Time", badge: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" },
+            "MH-197": { airline: "Malaysia Airlines", route: "DAC to KUL", dep: "02:00 AM", arr: "08:00 AM", status: "Departed", badge: "bg-blue-500/20 text-blue-400 border border-blue-500/30" }
+        };
+
+        function trackFlight() {
+            const input = document.getElementById('flightInput').value.trim().toUpperCase();
+            const resBox = document.getElementById('flightResult');
+            const errBox = document.getElementById('flightError');
+
+            resBox.classList.add('hidden');
+            errBox.classList.add('hidden');
+
+            if(input === '') {
+                alert('Please enter a flight number.');
+                return;
+            }
+
+            if(flightDatabase[input]) {
+                const f = flightDatabase[input];
+                document.getElementById('flNum').textContent = "Flight: " + input;
+                document.getElementById('flAirline').textContent = f.airline;
+                document.getElementById('flRoute').textContent = f.route;
+                document.getElementById('flDep').textContent = f.dep;
+                document.getElementById('flArr').textContent = f.arr;
+                
+                const badge = document.getElementById('flBadge');
+                badge.className = `px-2.5 py-1 rounded-full text-xs font-semibold ${f.badge}`;
+                badge.textContent = f.status;
+
+                resBox.classList.remove('hidden');
+            } else {
+                errBox.classList.remove('hidden');
+            }
+        }
+
+        function getCountryPortalUrl(country) {
+            const portals = {
+                "Malaysia": "https://malaysiavisa.imi.gov.my/",
+                "India": "https://indianvisaonline.gov.in/",
+                "China": "https://www.visaforchina.cn/"
+            };
+            return portals[country] || "https://www.immihelp.com/";
+        }
+
+        const defaultVisaDatabase = {
+            "A12345678": { ref: "NXG-5021", name: "Md. Rahim Uddin", country: "Malaysia", status: "Visa Processing in Progress", badgeClass: "bg-amber-500/20 text-amber-400 border-amber-500/30", portalUrl: "https://malaysiavisa.imi.gov.my/", steps: [{ done: true, text: "Documents Verified & Submitted" }, { done: true, text: "Embassy Forwarded" }, { active: true, text: "Visa Processing in Progress" }] },
+            "B87654321": { ref: "NXG-8834", name: "Fatema Akter", country: "India", status: "Visa Approved & Ready", badgeClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", portalUrl: "https://indianvisaonline.gov.in/", steps: [{ done: true, text: "Documents Verified & Submitted" }, { done: true, text: "Visa Stamped" }, { done: true, text: "Ready for Delivery" }] }
+        };
+
+        function syncDynamicVisaDatabase(booking) {
+            let statusText = "Documents Under Review at Banasree Office";
+            let badgeClass = "bg-blue-500/20 text-blue-400 border-blue-500/30";
+            let steps = [{ active: true, text: "Documents Received & Verified" }, { done: false, text: "Processing" }, { done: false, text: "Final Delivery" }];
+
+            if(booking.status === 'Approved') {
+                statusText = "Booking Approved & Processing";
+                badgeClass = "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+                steps = [{ done: true, text: "Booking Approved by Executive" }, { active: true, text: "Visa Processing" }, { done: false, text: "Ready for Delivery" }];
+            } else if(booking.status === 'Rejected') {
+                statusText = "Booking Rejected / Contact Office";
+                badgeClass = "bg-rose-500/20 text-rose-400 border-rose-500/30";
+                steps = [{ done: false, text: "Booking Cancelled" }];
+            }
+
+            const record = {
+                ref: booking.ref,
+                name: booking.name,
+                country: booking.country,
+                status: statusText,
+                badgeClass: badgeClass,
+                portalUrl: getCountryPortalUrl(booking.country),
+                steps: steps
+            };
+
+            localStorage.setItem('visa_' + booking.passport, JSON.stringify(record));
+            localStorage.setItem('visa_' + booking.ref, JSON.stringify(record));
+        }
+
+        function trackVisa() {
+            const input = document.getElementById('passportInput').value.trim().toUpperCase();
+            const resultBox = document.getElementById('trackerResult');
+            const errorBox = document.getElementById('trackerError');
+
+            resultBox.classList.add('hidden');
+            errorBox.classList.add('hidden');
+
+            if(input === '') {
+                alert('Please enter an Invoice ID or Passport Number.');
+                return;
+            }
+
+            let data = JSON.parse(localStorage.getItem('visa_' + input)) || defaultVisaDatabase[input];
+
+            if(!data) {
+                const foundBooking = allBookings.find(b => b.ref.toUpperCase() === input || b.passport.toUpperCase() === input);
+                if(foundBooking) {
+                    syncDynamicVisaDatabase(foundBooking);
+                    data = JSON.parse(localStorage.getItem('visa_' + input));
+                }
+            }
+
+            if(data) {
+                document.getElementById('resRef').textContent = data.ref;
+                document.getElementById('resCountry').textContent = data.country;
+                document.getElementById('resName').textContent = 'Client: ' + data.name;
+                document.getElementById('officialPortalBtn').href = data.portalUrl;
+                
+                const badge = document.getElementById('resStatusBadge');
+                badge.className = `text-xs px-3 py-1 rounded-full font-semibold border ${data.badgeClass}`;
+                badge.textContent = data.status;
+
+                let timelineHtml = '';
+                data.steps.forEach(step => {
+                    if(step.done) {
+                        timelineHtml += `
+                        <div class="flex items-center space-x-3">
+                            <div class="w-5 h-5 rounded-full bg-emerald-500 text-navy-900 flex items-center justify-center font-bold text-[10px]"><i class="fa-solid fa-check"></i></div>
+                            <span class="text-slate-200">${step.text}</span>
+                        </div>`;
+                    } else if(step.active) {
+                        timelineHtml += `
+                        <div class="flex items-center space-x-3">
+                            <div class="w-5 h-5 rounded-full bg-gold-500 text-navy-900 flex items-center justify-center font-bold text-[10px] animate-pulse">●</div>
+                            <span class="text-gold-500 font-semibold">${step.text}</span>
+                        </div>`;
+                    } else {
+                        timelineHtml += `
+                        <div class="flex items-center space-x-3">
+                            <div class="w-5 h-5 rounded-full bg-slate-700 text-slate-400 flex items-center justify-center font-bold text-[10px]">-</div>
+                            <span class="text-slate-500">${step.text}</span>
+                        </div>`;
+                    }
+                });
+
+                document.getElementById('resTimeline').innerHTML = timelineHtml;
+                resultBox.classList.remove('hidden');
+            } else {
+                errorBox.classList.remove('hidden');
+            }
+        }
+
+        updateAdminDashboardList();
+    </script>
+</body>
+</html>
